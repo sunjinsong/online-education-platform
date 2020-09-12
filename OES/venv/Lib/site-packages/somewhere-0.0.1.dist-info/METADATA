@@ -1,0 +1,31 @@
+Metadata-Version: 2.0
+Name: somewhere
+Version: 0.0.1
+Summary: Locates files like the Windows 'where' or the *nix 'which' utilities.
+Home-page: http://github.com/nicktimko/somewhere
+Author: Nick Timkovich
+Author-email: prometheus235@gmail.com
+License: MIT
+Keywords: which,find,path,where
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Utilities
+
+This is a GNU which replacement with the following features:
+- it is portable (Windows, Linux);
+- it understands PATHEXT on Windows;
+- it can print <em>all</em> matches on the PATH;
+- it can note "near misses" on the PATH (e.g. files that match but
+  may not, say, have execute permissions; and
+- it can be used as a Python module.
+
+

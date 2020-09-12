@@ -1,0 +1,29 @@
+首页的表设计：上部的轮播图  中间的轮播图设计
+slideshow_top  slideshow_bottom
+
+
+机构的设计：机构的类别   机构所在的城市  机构信息  机构的经典课程  讲师表
+
+
+课程的设计：课程表  章节表  视频表  资源表
+
+
+用户操作设计：收藏课程表  收藏讲师表  收藏机构表  评论课程表  咨询表 学习课程表
+
+
+用户模块：消息表  用户表 注册激活邮件
+
+
+模板继承：
+base.html
+course_comment.html  course_detail.html  course_list.html  course_video.html  index.html  org-list.html  teacher-detail.html
+teachers-list.html
+
+
+orgbase.html
+org-detail-course.html  org-detail-desc.html  org-detail-homepage.html  org-detail-teachers.html
+
+
+userbase.html
+usercenter-fav-course.html  usercenter-fav-org.html  usercenter-fav-teacher.html  usercenter-info.html
+usercenter-message.html   usercenter-mycourse.html

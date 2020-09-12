@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}公开课列表 - 谷粒教育网{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="index.html">首页</a>></li>
+                <li>公开课</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section>
+	<div class="wp">
+		<div class="list" style="margin-top:0;">
+			<div class="left layout">
+				<div class="head">
+					<ul class="tab_header">
+						<li class="active"><a href="?sort=">最新 </a></li>
+						<li ><a href="?sort=hot">最热门</a></li>
+						<li ><a href="?sort=students">参与人数</a></li>
+					</ul>
+				</div>
+                <div id="inWindow">
+                    <div class="tab_cont " id="content">
+					<div class="group_list">
+
+                            {% for course in course_list %}
+                            <div class="box">
+                                <a href="{% url 'course:coursedetail' course.id %}">
+                                    <img width="280" height="350" class="scrollLoading" src="/static/media/{{course.image}}"/>
+                                </a>
+                                <div class="des">
+                                    <a href="course-detail.html">
+                                        <h2>{{course.name}}</h2>
+                                    </a>
+                                    <span class="fl">时长：<i class="key">{{course.time}}</i></span>
+                                    <span class="fr">学习人数：{{course.learn_num}}&nbsp;&nbsp;</span>
+                                </div>
+                                <div class="bottom">
+                                    <a href="course-detail.html"><span class="fl">来自{{course.teacher.organization.name}}</span></a>
+                                    <span class="star fr  notlogin
+                                        " data-favid="15">
+                                        {{course.fav_num}}
+                                    </span>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+					</div>
+                    <div class="pageturn">
+                        <ul class="pagelist">
+                            
+
+                            
+                                
+                                    
+                                        <li class="active"><a href="?page=1">1</a></li>
+                                    
+                                
+                            
+                                
+                                    
+                                        <li><a href="?page=2" class="page">2</a></li>
+                                    
+                                
+                            
+                            
+                                <li class="long"><a href="?page=2">下一页</a></li>
+                            
+
+                        </ul>
+                    </div>
+				</div>
+                </div>
+			</div>
+			<div class="right layout">
+				<div class="head">热门课程推荐</div>
+				<div class="group_recommend">
+                    
+                    <dl>
+						<dt>
+							<a target="_blank" href="">
+								<img width="240" height="220" class="scrollLoading" src="../images/oracle.jpg"/>
+							</a>
+						</dt>
+						<dd>
+							<a target="_blank" href=""><h2> 数据库Oracle详解</h2></a>
+							<span class="fl">难度：<i class="key">高级</i></span>
+						</dd>
+					</dl>
+                    
+                    <dl>
+						<dt>
+							<a target="_blank" href="">
+								<img width="240" height="220" class="scrollLoading" src="../images/html.jpg"/>
+							</a>
+						</dt>
+						<dd>
+							<a target="_blank" href=""><h2> 前端三宝之html基础</h2></a>
+							<span class="fl">难度：<i class="key">中级</i></span>
+						</dd>
+					</dl>
+                    
+                    <dl>
+						<dt>
+							<a target="_blank" href="">
+								<img width="240" height="220" class="scrollLoading" src="../images/jQuery.jpg"/>
+							</a>
+						</dt>
+						<dd>
+							<a target="_blank" href=""><h2> 前端jQuery详解</h2></a>
+							<span class="fl">难度：<i class="key">中级</i></span>
+						</dd>
+					</dl>
+                    
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
