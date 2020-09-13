@@ -1,0 +1,6 @@
+django-simple-captcha
+django-haystack
+jieba
+django3.1
+pymysql
+django-redis
