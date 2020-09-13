@@ -64,21 +64,19 @@
             <ul class="pagelist">
                 
 
-                
-                    
-                        
-                            <li class="active"><a href="?page=1">1</a></li>
-                        
-                    
-                
-                    
-                        
-                            <li><a href="?page=2" class="page">2</a></li>
-                        
-                    
-                
-                
-                    <li class="long"><a href="?page=2">下一页</a></li>
+                                  {% if last != 0 %}
+                                <li class="long"><a href="?page={{last}}">上一页</a></li>
+                                {% endif %}
+                                 {% for pagei in page_list %}
+                                    {% if pagei == page %}
+                                        <li class="active"><a href="?page={{pagei}}">{{pagei}}</a></li>
+                                    {% else %}
+                                        <li class=""><a href="?page={{pagei}}">{{pagei}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if next != 0 %}
+                                <li class="long"><a href="?page={{next}}">下一页</a></li>
+                                {% endif %}
                 
 
             </ul>
@@ -86,36 +84,24 @@
 	</div>
 	<div class="right layout">
 		<div class="head">讲师排行榜</div>
-            
+
+            {% for teacher in hotteacher_list %}
             <dl class="des">
-                <span class="num fl">1</span>
-                <a href="/diary/hk_detail/6/">
+                <span class="num fl">{{forloop.counter}}</span>
+                <a href="{% url 'organization:teacherdetail' teacher.id %}">
                     <dt>
-                        <img width="50" height="50" class="scrollLoading"  src="../images/touxiang.jpg"/>
+                        <img width="50" height="50" class="scrollLoading"  src="/static/media/{{teacher.image}}"/>
                     </dt>
                 </a>
                 <dd>
-                    <a href="/diary/hk_detail/6/">
-                        <h1 title="weesmile">weesmile</h1>
+                    <a href="{% url 'organization:teacherdetail' teacher.id %}">
+                        <h1 title="weesmile">{{teacher.name}}</h1>
                     </a>
-                    <p>工作年限：<span>5年</span></p>
+                    <p>工作年限：<span>{{teacher.work_time}}年</span></p>
                 </dd>
             </dl>
-            
-            <dl class="des">
-                <span class="num fl">2</span>
-                <a href="/diary/hk_detail/6/">
-                    <dt>
-                        <img width="50" height="50" class="scrollLoading"  src="../images/touxiang.jpg"/>
-                    </dt>
-                </a>
-                <dd>
-                    <a href="/diary/hk_detail/6/">
-                        <h1 title="还是weesmile">还是weesmile</h1>
-                    </a>
-                    <p>工作年限：<span>5年</span></p>
-                </dd>
-            </dl>
+            {% endfor %}
+
             
 
 	</div>

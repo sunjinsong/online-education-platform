@@ -67,7 +67,10 @@
                                 <li data-value="teacher">授课老师</li>
                             </ul>
                         </div>
-                        <input id="search_keywords" class="fl" type="text" value="" placeholder="请输入搜索内容"/>
+						<form action="" method="get">
+
+						</form>
+                        <input id="search_keywords" class="fl" type="text" value="" name="q" placeholder="请输入搜索内容"/>
                         <img class="search_btn fr" id="jsSearchBtn" src="{% static 'images/search_btn.png' %}"/>
                     </div>
                 </div>
@@ -78,16 +81,16 @@
 				<div class="nav">
 					<div class="wp">
 						<ul>
-							<li class="active" ><a href="{% url 'index:index' %}">首页</a></li>
-							<li >
+							<li {% if flag == 'index' %}class="active"{% endif %} ><a href="{% url 'index:index' %}">首页</a></li>
+							<li {% if flag == 'course' %}class="active"{% endif %}>
 								<a href="{% url 'course:courselist' %}">
 									公开课<img class="hot" src="{% static 'images/nav_hot.png' %}">
 								</a>
 							</li>
-							<li >
+							<li {% if flag == 'teacher' %}class="active"{% endif %}>
 								<a href="{% url 'organization:teacherlist' %}">授课教师</a>
-							</li>
-							<li ><a href="{% url 'organization:organizationlist' %}">授课机构</a></li>
+							</li >
+							<li {% if flag == 'organization' %}class="active"{% endif %}><a href="{% url 'organization:organizationlist' %}">授课机构</a></li>
 						</ul>
 					</div>
 				</div>

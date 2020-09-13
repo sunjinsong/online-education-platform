@@ -56,22 +56,19 @@
                         <ul class="pagelist">
                             
 
-                            
-                                
-                                    
-                                        <li class="active"><a href="?page=1">1</a></li>
-                                    
-                                
-                            
-                                
-                                    
-                                        <li><a href="?page=2" class="page">2</a></li>
-                                    
-                                
-                            
-                            
-                                <li class="long"><a href="?page=2">下一页</a></li>
-                            
+                                {% if last != 0 %}
+                                <li class="long"><a href="?page={{last}}">上一页</a></li>
+                                {% endif %}
+                                 {% for pagei in page_list %}
+                                    {% if pagei == page %}
+                                        <li class="active"><a href="?page={{pagei}}">{{pagei}}</a></li>
+                                    {% else %}
+                                        <li class=""><a href="?page={{pagei}}">{{pagei}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if next != 0 %}
+                                <li class="long"><a href="?page={{next}}">下一页</a></li>
+                                {% endif %}
 
                         </ul>
                     </div>
@@ -81,42 +78,21 @@
 			<div class="right layout">
 				<div class="head">热门课程推荐</div>
 				<div class="group_recommend">
-                    
+
+					{% for course in hotcourse_list %}
                     <dl>
 						<dt>
-							<a target="_blank" href="">
-								<img width="240" height="220" class="scrollLoading" src="../images/oracle.jpg"/>
+							<a target="_blank" href="{% url 'course:coursedetail' course.id %}">
+								<img width="240" height="220" class="scrollLoading" src="/static/media/{{course.image}}"/>
 							</a>
 						</dt>
 						<dd>
-							<a target="_blank" href=""><h2> 数据库Oracle详解</h2></a>
-							<span class="fl">难度：<i class="key">高级</i></span>
+							<a target="_blank" href=""><h2> {{course.name}}</h2></a>
+							<span class="fl">难度：<i class="key">{% if course.grade == 1 %}初级{% elif course.grade == 2 %}中级{% else %}高级{% endif %}</i></span>
 						</dd>
 					</dl>
-                    
-                    <dl>
-						<dt>
-							<a target="_blank" href="">
-								<img width="240" height="220" class="scrollLoading" src="../images/html.jpg"/>
-							</a>
-						</dt>
-						<dd>
-							<a target="_blank" href=""><h2> 前端三宝之html基础</h2></a>
-							<span class="fl">难度：<i class="key">中级</i></span>
-						</dd>
-					</dl>
-                    
-                    <dl>
-						<dt>
-							<a target="_blank" href="">
-								<img width="240" height="220" class="scrollLoading" src="../images/jQuery.jpg"/>
-							</a>
-						</dt>
-						<dd>
-							<a target="_blank" href=""><h2> 前端jQuery详解</h2></a>
-							<span class="fl">难度：<i class="key">中级</i></span>
-						</dd>
-					</dl>
+					{% endfor %}
+
                     
 
 

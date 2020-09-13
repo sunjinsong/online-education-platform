@@ -1,0 +1,3 @@
+{{ object.introduce }}
+{{ object.course_category }}
+{{ object.detail }}

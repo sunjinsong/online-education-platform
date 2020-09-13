@@ -76,39 +76,23 @@
                 </div>
 
                 <div class="mod-chapters">
-                    
+                    {% for chapter in chapter_list %}
                     <div class="chapter chapter-active" >
                         <h3>
-                            <strong><i class="state-expand"></i>第一章 mysql简介</strong>
+                            <strong><i class="state-expand"></i>第{{forloop.counter}}章 {{chapter.name}}</strong>
                         </h3>
                         <ul class="video">
-                            
+                            {% for video in chapter.video_list %}
                             <li>
-                                <a target="_blank" href='/video/3662' class="J-media-item studyvideo">1.1 什么是数据库 (0)
+                                <a target="_blank" href="/course/video/{{video.id}}/" class="J-media-item studyvideo"> {{video.name}} ({{video.time}})
                                     <i class="study-state"></i>
                                 </a>
                             </li>
-                            
-                            <li>
-                                <a target="_blank" href='/video/3662' class="J-media-item studyvideo">1.2 什么是mysql (0)
-                                    <i class="study-state"></i>
-                                </a>
-                            </li>
-                            
-                            <li>
-                                <a target="_blank" href='/video/3662' class="J-media-item studyvideo">1.3 数据库的分类(0)
-                                    <i class="study-state"></i>
-                                </a>
-                            </li>
+                            {% endfor %}
                             
                         </ul>
                     </div>
-                    
-                    <div class="chapter chapter-active" >
-                        <h3>
-                            <strong><i class="state-expand"></i>第二章 数据库的安装</strong>
-                        </h3>
-                    </div>
+                    {% endfor %}
                     
 
                 </div>
@@ -120,33 +104,34 @@
                     <div class="box mb40">
                         <h4>资料下载</h4>
                         <ul class="downlist">
-                            
+                            {% for source in source_list %}
                             <li>
-                                <span ><i class="aui-iconfont aui-icon-file"></i>&nbsp;&nbsp;开发流程</span>
-                                <a href="{% static 'media/course/resource/2016/11/media.zip' %}" class="downcode" target="_blank" download="" data-id="274" title="">下载</a>
+                                <span ><i class="aui-iconfont aui-icon-file"></i>&nbsp;&nbsp;{{source.name}}</span>
+                                <a href="/static/media/{{source.file}}" class="downcode" target="_blank" download="" data-id="274" title="">下载</a>
                             </li>
+                            {% endfor %}
                             
                         </ul>
                     </div>
                     <div class="box mb40">
                         <h4>讲师提示</h4>
                         <div class="teacher-info">
-                            <a href="/u/315464/courses?sort=publish" target="_blank">
+                            <a href="{% url 'organization:teacherdetail' teacher.id %}" target="_blank">
                                 <img src="{% static 'images/touxiang.jpg' %}" width='80' height='80' />
                             </a>
         <span class="tit">
-          <a href="/u/315464/courses?sort=publish" target="_blank">weesmile</a>
+          <a href="{% url 'organization:teacherdetail' teacher.id %}" target="_blank">{{teacher.name}}</a>
         </span>
                             <span class="job">xxx</span>
                         </div>
                         <div class="course-info-tip">
                             <dl class="first">
                                 <dt>课程须知</dt>
-                                <dd class="autowrap">好好干</dd>
+                                <dd class="autowrap">{{course.should_kown}}</dd>
                             </dl>
                             <dl>
                                 <dt>老师告诉你能学到什么？</dt>
-                                <dd class="autowrap">好好学，啥都有！</dd>
+                                <dd class="autowrap">{{course.learn_kg}}</dd>
                             </dl>
                         </div>
                     </div>

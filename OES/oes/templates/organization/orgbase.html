@@ -25,22 +25,48 @@
     <header>
 		<div  class="header2 header">
 
-                <div class="top">
+ 			<div class="top">
 				<div class="wp">
-					<div class="fl">
-                        <p>联系方式：<b>8888888833</b></p>
-                    </div>
-                    <a style="color:white" class="fr registerbtn" href="register.html">注册</a>
-                    <a style="color:white" class="fr loginbtn" href="login.html">登录</a>
+					<div class="fl"><p>服务电话：<b>8888888</b></p></div>
+					<!--登录后跳转-->
+
+                        {% if not request.user.is_authenticated %}
+                         <a style="color:white" class="fr registerbtn" href="{% url 'users:register' %}">注册</a>
+                         <a style="color:white" class="fr loginbtn" href="{% url 'users:login' %}">登录</a>
+						{% else %}
+						<div class="personal">
+                            <dl class="user fr">
+                                <dd>{{ request.user.username }}<img class="down fr" src="{% static 'images/top_down.png' %}"/></dd>
+                                <dt><img width="20" height="20" src="{{request.user.image}}"/></dt>
+                            </dl>
+                            <div class="userdetail">
+                            	<dl>
+	                                <dt><img width="80" height="80" src="{{request.user.image}}"/></dt>
+	                                <dd>
+	                                    <h2>django</h2>
+	                                    <p>{{ request.user.username }}</p>
+	                                </dd>
+                                </dl>
+                                <div class="btn">
+	                                <a class="personcenter fl" href="{% url 'users:usercenterinfo' %}">进入个人中心</a>
+	                                <a class="fr" href="{% url 'users:userlogout' %}">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
 				</div>
 			</div>
 
 
     <div class="middle companyheader">
         <div class="wp">
+            <a href="{% url 'index:index' %}">
             <img class="fl" style="width: 112px;height: 103px" src="{% static 'images/org.png' %}"/>
+            </a>
             <div class="head fl">
                 <h1>
+
                     谷粒教育网
                     <img src="{% static 'images/authentication.png' %}"/>
                     <img src="{% static 'images/gold.png' %}"/>
@@ -52,7 +78,7 @@
                 </p>
             </div>
             <div class="btn fr collectionbtn  notlogin
-                 "data-favid="22" data-fav-type="1">
+                 "data-favid="{{org_id}}" data-fav-type="3">
                  收藏
             </div>
 
@@ -95,7 +121,7 @@ function add_fav(current_elem, fav_id, fav_type){
     $.ajax({
         cache: false,
         type: "POST",
-        url:"/org/add_fav/",
+        url:"/operation/add_fav/",
         data:{'fav_id':fav_id, 'fav_type':fav_type},
         async: true,
         beforeSend:function(xhr, settings){
@@ -117,7 +143,9 @@ function add_fav(current_elem, fav_id, fav_type){
 }
 
 $('.collectionbtn').on('click', function(){
-    add_fav($(this), 1, 2);
+    fav_id = $('.collectionbtn').attr('data-favid');
+    type_id = $('.collectionbtn').attr('data-fav-type');
+    add_fav($(this),  fav_id, type_id);
 });
 
 $(function(){

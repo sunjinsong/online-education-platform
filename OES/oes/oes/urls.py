@@ -23,5 +23,7 @@ urlpatterns = [
     path('', include(('index.urls', 'index'), namespace='index')),
     path('course/',include(('courses.urls','course'),namespace='course')),
     path('organization/',include(('organizations.urls','organization'),namespace='organization')),
+    path('operation/', include(('operations.urls', 'operation'), namespace='operation')),
+    # path('haystack/',include('haystack.urls'))
 
 ]

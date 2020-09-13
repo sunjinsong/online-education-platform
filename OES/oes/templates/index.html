@@ -61,7 +61,7 @@
 				<h1>公开课程</h1>
 				<div class="module1 eachmod">
 					<div class="module1_1 left">
-						<img width="228" height="614" src="../images/module5_1.jpg"/>
+						<img width="228" height="614" src="{% static 'images/module5_1.jpg' %}"/>
 						<p class="fisrt_word">名师授课<br/>专业权威</p>
 						<a class="more" href="course-list.html">查看更多课程 ></a>
 					</div>
@@ -69,126 +69,37 @@
 						<div class="module1_2 box">
 							<div class="imgslide2">
 								<ul class="imgs">
-
+                                    {% for slide in slides_bottom %}
                                     <li>
-                                        <a href="course-detail.html">
-                                            <img width="470" height="300" src="../images/mysql.jpg" />
+                                        <a href="">
+                                            <img width="470" height="300" src="/static/media/{{slide.image}}" />
                                         </a>
                                     </li>
-
-                                    <li>
-                                        <a href="course-detail.html">
-                                            <img width="470" height="300" src="../images/mongoDB.jpg" />
-                                        </a>
-                                    </li>
+                                    {% endfor %}
 
 								</ul>
 							</div>
 							<div class="unslider-arrow2 prev"></div>
 							<div class="unslider-arrow2 next"></div>
 						</div>
-
-                            <div class="module1_3 box">
-                                <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/html.jpg"/>
+                            {% for course in course_list %}
+                            <div class="module1_{{forloop.counter|add:2}} box">
+                                <a href="{% url 'course:coursedetail' course.id %}">
+                                    <img width="233" height="190" src="/static/media/{{course.image}}"/>
                                 </a>
                                 <div class="des">
                                     <a href="course-detail.html">
-                                        <h2 title="django入门">html基础</h2>
+                                        <h2 title="django入门">{{course.name}}</h2>
                                     </a>
-                                    <span class="fl">难度：<i class="key">初级</i></span>
-                                    <span class="fr">学习人数：3</span>
+                                    <span class="fl">难度：<i class="key">{% if course.grade == 1 %}初级{% elif course.grade == 2 %}中级{% else %}高级{% endif %}</i></span>
+                                    <span class="fr">学习人数：{{course.learn_num}}</span>
                                 </div>
                                 <div class="bottom">
-                                    <span class="fl" title="谷粒教育网">谷粒教育网</span>
-                                    <span class="star fr">0</span>
+                                    <span class="fl" title="谷粒教育网">{{course.teacher.organization.name}}</span>
+                                    <span class="star fr">{{course.fav_num}}</span>
                                 </div>
                             </div>
-
-                            <div class="module1_4 box">
-                                <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/css.jpg"/>
-                                </a>
-                                <div class="des">
-                                    <a href="course-detail.html">
-                                        <h2 title="css2.1">css2.1</h2>
-                                    </a>
-                                    <span class="fl">难度：<i class="key">中级</i></span>
-                                    <span class="fr">学习人数：0</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="谷粒教育网">谷粒教育网</span>
-                                    <span class="star fr">0</span>
-                                </div>
-                            </div>
-
-                            <div class="module1_5 box">
-                                <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/js基础.jpg"/>
-                                </a>
-                                <div class="des">
-                                    <a href="course-detail.html">
-                                        <h2 title="javascript基础入门">javascript基础入门</h2>
-                                    </a>
-                                    <span class="fl">难度：<i class="key">初级</i></span>
-                                    <span class="fr">学习人数：0</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="谷粒教育网">谷粒教育网</span>
-                                    <span class="star fr">0</span>
-                                </div>
-                            </div>
-
-                            <div class="module1_6 box">
-                                <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/js高级.jpg"/>
-                                </a>
-                                <div class="des">
-                                    <a href="course-detail.html">
-                                        <h2 title="javascript高级">javascript高级</h2>
-                                    </a>
-                                    <span class="fl">难度：<i class="key">高级</i></span>
-                                    <span class="fr">学习人数：0</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="谷粒教育网2">谷粒教育网2</span>
-                                    <span class="star fr">0</span>
-                                </div>
-                            </div>
-
-                            <div class="module1_7 box">
-                                <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/linux.jpg"/>
-                                </a>
-                                <div class="des">
-                                    <a href="course-detail.html">
-                                        <h2 title="linux全讲">linux全讲</h2>
-                                    </a>
-                                    <span class="fl">难度：<i class="key">初级</i></span>
-                                    <span class="fr">学习人数：1</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="谷粒教育网3">谷粒教育网3</span>
-                                    <span class="star fr">0</span>
-                                </div>
-                            </div>
-
-                            <div class="module1_8 box">
-                                <a href="course-detail.html">
-                                    <img width="233" height="190" src="../images/jQuery.jpg"/>
-                                </a>
-                                <div class="des">
-                                    <a href="course-detail.html">
-                                        <h2 title="jquery全解析">jquery全解析</h2>
-                                    </a>
-                                    <span class="fl">难度：<i class="key">中级</i></span>
-                                    <span class="fr">学习人数：0</span>
-                                </div>
-                                <div class="bottom">
-                                    <span class="fl" title="谷粒教育网666">谷粒教育网666</span>
-                                    <span class="star fr">0</span>
-                                </div>
-                            </div>
+                            {% endfor %}
 
 					</div>
 				</div>
@@ -201,222 +112,27 @@
 				<h1>课程机构</h1>
 				<div class="module3 eachmod">
 					<div class="module3_1 left">
-						<img width="228" height="463" src="../images/module6_1.jpg"/>
+						<img width="228" height="463" src="{% static 'images/module6_1.jpg' %}"/>
 						<p class="fisrt_word">名校来袭<br/>权威认证</p>
 						<a class="more" href="org-list.html">查看更多机构 ></a>
 					</div>
 					<div class="right">
 						<ul>
-
+                                {% for org in org_list %}
                                 <li class="">
-                                    <a href="org-detail-homepage.html">
+                                    <a href="{% url 'organization:organizationdetailpagehome' org.id %}">
                                         <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
+                                            <img width="184" height="100" src="/static/media/{{org.image}}"/>
                                             <div class="score">
                                                 <div class="circle">
                                                     <h2>全国知名</h2>
                                                 </div>
                                             </div>
                                         </div>
-                                        <p><span class="key" title="谷粒教育网">谷粒教育网</span></p>
+                                        <p><span class="key" title="谷粒教育网">{{org.name}}</span></p>
                                     </a>
                                 </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="尚硅谷">尚硅谷</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="清华大学">清华大学</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="南京大学">南京大学</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="five">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="谷粒教育网2">谷粒教育网2</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="谷粒教育网3">谷粒教育网3</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="谷粒教育网3">谷粒教育网3</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="谷粒教育网4">谷粒教育网4</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="谷粒教育网5">谷粒教育网5</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="five">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="谷粒教育网666">谷粒教育网666</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="谷粒教育网">谷粒教育网</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png" />
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="python培训机构">python培训机构</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="vuejs培训">vuejs培训</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="nodejs培训">nodejs培训</span></p>
-                                    </a>
-                                </li>
-
-                                <li class="five">
-                                    <a href="org-detail-homepage.html">
-                                        <div class="company">
-                                            <img width="184" height="100" src="../images/org.png"/>
-                                            <div class="score">
-                                                <div class="circle">
-                                                    <h2>全国知名</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><span class="key" title="谷粒教育">谷粒教育</span></p>
-                                    </a>
-                                </li>
+                                {% endfor %}
 
 						</ul>
 					</div>

@@ -17,10 +17,10 @@
 	<div class="wp list personal_list comp">
 		<div class="left">
 			<ul>
-                <li class="active2"><a href="">机构首页</a></li>
-                <li class=""><a href="{% url 'organization:organizationdetailcourse' 1 %}">机构课程</a></li>
-                <li class=""><a href="{% url 'organization:organizationdetailpagehome' 1 %}">机构介绍</a></li>
-                <li class=""><a href="{% url 'organization:organizationdetailpagehome' 1 %}">机构讲师</a></li>
+                <li class=""><a href="{% url 'organization:organizationdetailpagehome' org_id %}">机构首页</a></li>
+                <li class="active2"><a href="{% url 'organization:organizationdetailcourse' org_id %}">机构课程</a></li>
+                <li class=""><a href="{% url 'organization:organizationdetaildesc' org_id %}">机构介绍</a></li>
+                <li class=""><a href="{% url 'organization:organizationdetailteacher' org_id %}">机构讲师</a></li>
 
 			</ul>
 		</div>

@@ -24,7 +24,7 @@ class City(BaseModel):
 
 class Organization(BaseModel):
     name = models.CharField(verbose_name='机构名字',max_length=20)
-    image = models.ImageField(verbose_name='机构图片',max_length=200)
+    image = models.ImageField(verbose_name='机构图片',max_length=200,upload_to='organization/%y/%m/%d/')
     organizationcategory = models.ForeignKey(OrganizationCategory,verbose_name='机构类别',on_delete=models.CASCADE)
     city = models.ForeignKey(City,verbose_name='城市',on_delete=models.CASCADE)
     teacher_num = models.IntegerField(default=0,verbose_name='教师数量')

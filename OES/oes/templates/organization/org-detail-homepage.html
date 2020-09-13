@@ -17,10 +17,10 @@
 	<div class="wp list personal_list comp">
 		<div class="left">
 			<ul>
-                <li class=""><a href="org-detail-homepage.html">机构首页</a></li>
-                <li class=""><a href="org-detail-course.html">机构课程</a></li>
-                <li class="active2"><a href="org-detail-desc.html">机构介绍</a></li>
-                <li class=""><a href="org-detail-teachers.html">机构讲师</a></li>
+                <li class="active2"><a href="{% url 'organization:organizationdetailpagehome' org_id %}">机构首页</a></li>
+                <li class=""><a href="{% url 'organization:organizationdetailcourse' org_id %}">机构课程</a></li>
+                <li class=""><a href="{% url 'organization:organizationdetaildesc' org_id %}">机构介绍</a></li>
+                <li class=""><a href="{% url 'organization:organizationdetailteacher' org_id %}">机构讲师</a></li>
 
 			</ul>
 		</div>
@@ -104,7 +104,7 @@ function add_fav(current_elem, fav_id, fav_type){
     $.ajax({
         cache: false,
         type: "POST",
-        url:"/org/add_fav/",
+        url:"/operation/add_fav/",
         data:{'fav_id':fav_id, 'fav_type':fav_type},
         async: true,
         beforeSend:function(xhr, settings){
@@ -126,7 +126,9 @@ function add_fav(current_elem, fav_id, fav_type){
 }
 
 $('.collectionbtn').on('click', function(){
-    add_fav($(this), 1, 2);
+    fav_id = $('.collectionbtn')[0].attr('data-favid');
+    type_id = $('.collectionbtn')[0].attr('data-fav-type');
+    add_fav($(this),  fav_id, type_id);
 });
 
 $(function(){
@@ -134,7 +136,7 @@ $(function(){
         score = $precision.attr('data-star-scope'),
         option =  {
                     half		: true,
-                    path		: '../images/',
+                    path		: '{% static 'images/',
                     precision	: true,
                     size		: 24,
                     starOff		: 'g_star.png',

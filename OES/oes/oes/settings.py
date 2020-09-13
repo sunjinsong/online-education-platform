@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'index',
     'courses',
     'organizations',
+    'operations',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +165,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 #配置没有登录重定向的位置
 LOGIN_URL = '/users/login/'
+
+
+
+#haystack设置
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

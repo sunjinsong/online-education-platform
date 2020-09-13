@@ -61,7 +61,7 @@
 
                             {% for course in course_list %}
                             <div class="module1_5 box">
-                                <a href="course-detail.html">
+                                <a href="{% url 'course:coursedetail' course.id %}">
                                     <img width="214" height="190" class="scrollLoading" src="/static/media/{{course.image}}"/>
                                 </a>
                                 <div class="des">

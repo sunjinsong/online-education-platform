@@ -29,16 +29,35 @@ class Chapter(BaseModel):
     name = models.CharField(max_length=30,verbose_name='章节名字')
     course = models.ForeignKey(Course,verbose_name='所属课程',on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = '章节'
+        verbose_name_plural = verbose_name
+
 class Video(BaseModel):
     name = models.CharField(verbose_name='视频名字',max_length=20)
     time = models.IntegerField(verbose_name='视频时长',default=0)
-    url = models.URLField(verbose_name='视频url')
+    url = models.FileField(verbose_name='视频',upload_to='video/%y/%m/%d')
     chapter = models.ForeignKey(Chapter,verbose_name='所属章节',on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
+    class Meta:
+        verbose_name = '视频'
+        verbose_name_plural = verbose_name
 
 
 class resource(BaseModel):
     file = models.FileField(upload_to='resource/%y/%m/%d',verbose_name='课程资源')
     name = models.CharField(verbose_name='资源名字',max_length=20)
     course = models.ForeignKey(Course,verbose_name='所属课程',on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = '课程资源'
+        verbose_name_plural = verbose_name

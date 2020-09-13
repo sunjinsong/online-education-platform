@@ -1,0 +1,8 @@
+sizeof会将字符串的最后一个字符 '/0'算入
+
+在写入比如write和send时一定要使用这样的形式
+write(fd,buf,sizeof(buf))
+这样不会出错
+
+在发送的缓冲区和接收的缓冲区buf用之前一定要memset(buf,0,buflen)
+否则会将上一次的内容传送过去
