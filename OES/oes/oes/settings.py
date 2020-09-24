@@ -85,8 +85,8 @@ WSGI_APPLICATION = 'oes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST' : '39.101.213.98',
-        'PASSWORD':'673074094',
+        'HOST' : '',
+        'PASSWORD':'',
         'USER' : 'root',
         'NAME': 'oes',
     }
@@ -150,8 +150,8 @@ AUTH_USER_MODEL = 'users.UserProfile'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = '673074094@qq.com' #邮箱
-EMAIL_HOST_PASSWORD = 'qorgxyfjzyqlbcdc' #授权码
+EMAIL_HOST_USER = '' #邮箱
+EMAIL_HOST_PASSWORD = '' #授权码
 EMAIL_USE_SSL = True # 和SMTP对话是否使用SSL安全连接端口465
 EMAIL_URL='127.0.0.1/users/'
 
