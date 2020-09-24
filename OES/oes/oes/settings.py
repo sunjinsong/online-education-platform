@@ -138,14 +138,6 @@ AUTH_USER_MODEL = 'users.UserProfile'
 
 #配置邮件发送
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.qq.com'
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = '673074094@qq.com'
-# EMAIL_HOST_PASSWORD = 'qorgxyfjzyqlbcdc'
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-# EMAIL_URL='127.0.0.1/users/active_acount/'
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.qq.com'
